@@ -1,0 +1,297 @@
+/* BATMAN 404 - CORE STYLE */
+
+:root {
+    --primary: #ff1a1a;
+    /* Batman Red */
+    --accent: #00ff00;
+    /* Riddler/Terminal Green */
+    --bg-dark: #050000;
+    /* Very dark red/black */
+    --glass: rgba(20, 0, 0, 0.7);
+    --border: rgba(255, 26, 26, 0.4);
+    --font-head: 'Orbitron', sans-serif;
+    --font-body: 'Rajdhani', sans-serif;
+    --font-mono: 'Share Tech Mono', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: #e0e0e0;
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    height: 100vh;
+}
+
+/* --- EFFECTS --- */
+/* CRT Scanlines */
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(255, 0, 0, 0.02), rgba(255, 0, 0, 0.06));
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* Static Noise */
+.noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 90;
+    opacity: 0.4;
+}
+
+/* --- BACKGROUND --- */
+.bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Ideally replace with the Batman image later */
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+    z-index: -1;
+}
+
+/* --- HUD Header --- */
+.hud-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: transparent;
+    /* Transparent as requested */
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.glitch-logo {
+    font-family: var(--font-head);
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--primary);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+.system-status {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    /* Green */
+    letter-spacing: 2px;
+    margin-top: 5px;
+}
+
+.status-indicator {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--primary);
+    margin-top: 5px;
+}
+
+.blink {
+    animation: blink 1s infinite;
+    color: var(--accent);
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.hud-nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--primary);
+    padding: 0.5rem 1.5rem;
+    font-family: var(--font-head);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    background: var(--primary);
+    color: #000;
+    box-shadow: 0 0 15px var(--primary);
+}
+
+/* --- CONTENT AREA --- */
+.interface {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero Grid */
+.hero-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.hero-info {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 4rem;
+    border: 1px solid var(--border);
+    background: var(--glass);
+}
+
+.hero-info h1 {
+    font-family: var(--font-head);
+    font-size: 4rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.hero-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+
+.hero-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+    border-color: var(--primary);
+}
+
+.hero-card h3 {
+    color: var(--primary);
+    font-family: var(--font-head);
+    margin-bottom: 0.5rem;
+}
+
+.hero-card p {
+    font-family: var(--font-mono);
+    color: #aaa;
+}
+
+.scan-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary);
+    opacity: 0.5;
+    animation: scan 2s infinite linear;
+    display: none;
+}
+
+.hero-card:hover .scan-bar {
+    display: block;
+}
+
+@keyframes scan {
+    0% {
+        top: 0;
+    }
+
+    100% {
+        top: 100%;
+    }
+}
+
+/* Tools List */
+.tools-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.tool-item {
+    background: rgba(20, 20, 20, 0.9);
+    border-left: 3px solid var(--primary);
+    padding: 1.5rem;
+    font-family: var(--font-mono);
+}
+
+.tool-item h4 {
+    color: #fff;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+}
+
+.tool-item .cmd {
+    background: #000;
+    color: var(--accent);
+    padding: 5px;
+    display: block;
+    margin-top: 10px;
+    font-size: 0.8rem;
+}
+
+#tool-search {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--border);
+    color: var(--primary);
+    font-family: var(--font-head);
+    font-size: 1.2rem;
+    outline: none;
+}
+
+#tool-search:focus {
+    border-color: var(--accent);
+}
