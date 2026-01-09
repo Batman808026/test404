@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BATMAN 404 | SYSTEM_SECURE</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- CRT Overlay & Effects -->
+    <div class="scanlines"></div>
+    <div class="noise"></div>
+    
+    <!-- Background Video/Image Container -->
+    <div class="bg-container" id="bg-container"></div>
+
+    <!-- Main Interface -->
+    <main class="interface">
+        
+        <!-- Header / HUD -->
+        <header class="hud-header">
+            <div class="logo-area">
+                <div class="glitch-logo" data-text="BATMAN 404">BATMAN 404</div>
+                <div class="status-indicator">SYSTEM: <span class="blink">ONLINE</span></div>
+            </div>
+            <nav class="hud-nav">
+                <button class="nav-btn active" onclick="switchTab('home')">HUB</button>
+                <button class="nav-btn" onclick="switchTab('notes')">CLASSIFIED</button>
+                <button class="nav-btn" onclick="switchTab('tools')">ARSENAL</button>
+            </nav>
+        </header>
+
+        <!-- Dynamic Content Area -->
+        <div id="content-area" class="content-container">
+            
+            <!-- HOME TAB -->
+            <section id="home" class="tab-content active">
+                <div class="hero-grid">
+                    <div class="hero-card tilt" onclick="switchTab('notes')">
+                        <div class="card-inner">
+                            <h3>📖 KNOWLEDGE</h3>
+                            <p>Access Classified Research</p>
+                            <div class="scan-bar"></div>
+                        </div>
+                    </div>
+                    <div class="hero-card tilt" onclick="switchTab('tools')">
+                        <div class="card-inner">
+                            <h3>🛠️ WEAPONRY</h3>
+                            <p>Cyber Security Toolset</p>
+                            <div class="scan-bar"></div>
+                        </div>
+                    </div>
+                    <div class="hero-card tilt" onclick="window.open('https://github.com', '_blank')">
+                        <div class="card-inner">
+                            <h3>💻 SOURCE</h3>
+                            <p>Encrypted Uplink</p>
+                            <div class="scan-bar"></div>
+                        </div>
+                    </div>
+                    <div class="hero-info">
+                        <h1>THE DARK KNIGHT</h1>
+                        <p class="typewriter">Protecting the digital realm from the shadows.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NOTES TAB -->
+            <section id="notes" class="tab-content">
+                <h2>// CLASSIFIED_NOTES</h2>
+                <div class="notes-grid">
+                    <!-- Sample Note -->
+                    <article class="note-entry">
+                        <h3>SSRF_VULN_01</h3>
+                        <div class="meta">LEVEL: CRITICAL | DATE: 2026-01-09</div>
+                        <p>Server-Side Request Forgery allows an attacker to induce the server-side application to make requests to an unintended location.</p>
+                        <a href="#" class="read-btn">DECRYPT_FILE</a>
+                    </article>
+                </div>
+            </section>
+
+            <!-- TOOLS TAB -->
+            <section id="tools" class="tab-content">
+                <h2>// ARSENAL_INVENTORY</h2>
+                <input type="text" id="tool-search" placeholder="SEARCH_DATABASE..." onkeyup="filterTools()">
+                <div class="tools-list" id="tools-list">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
